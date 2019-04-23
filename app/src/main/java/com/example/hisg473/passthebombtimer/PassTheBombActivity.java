@@ -1,6 +1,6 @@
 package com.example.hisg473.passthebombtimer;
 
-import android.content.Context;
+import android.app.Activity;
 import android.media.MediaPlayer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -11,27 +11,27 @@ import android.widget.ImageView;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class MainActivity extends AppCompatActivity {
+public class PassTheBombActivity extends Activity {
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_bomb);
     }
 
     public void startTimer(View view) {
 
-        EditText minimumTime = findViewById(R.id.minimumEntry);
-        EditText maximumTime = findViewById(R.id.maximumEntry);
+        EditText minimumTimeInput = findViewById(R.id.minimumEntry);
+        EditText maximumTimeInput = findViewById(R.id.maximumEntry);
 
-        String min = minimumTime.getText().toString();
-        String max = maximumTime.getText().toString();
+        String minimumTimeAsString = minimumTimeInput.getText().toString();
+        String maximumTimeAsString = maximumTimeInput.getText().toString();
 
-        int a = Integer.parseInt(min);
-        int b = Integer.parseInt(max);
+        int minimumTime = Integer.parseInt(minimumTimeAsString);
+        int maximumTime = Integer.parseInt(maximumTimeAsString);
 
-        int timeToCountdownInMilliseconds = ((int) ((Math.random() * b) + a)) * 1000;
+        int timeToCountdownInMilliseconds = ((int) ((Math.random() * maximumTime) + minimumTime)) * 1000;
 
         ImageView bomb = findViewById(R.id.bombImage);
         bomb.setImageResource(R.drawable.fuse);
